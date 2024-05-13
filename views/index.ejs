@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs") %>
+
+<% if (locals.content && locals.crypto) { %>
+    <h1>The price of <%= crypto %> - USD is $<%= content %></h1>
+<% } else if (locals.error) { %>
+    <h1><%= error %></h1>
+<% } else { %>
+    <h1>Type the code of the cryptocurrency you're interested in to see its price 💸</h1>
+<% } %>
+
+<form action="/submit" method="POST">
+    <input type="text" name="crypto" placeholder="Crypto code">
+    <input type="submit" value="Check Price">
+</form>
+
+<%- include("partials/footer.ejs") %>
