@@ -26,15 +26,16 @@ app.post("/submit", async (req, res) => {
     try {
         // Extracting the cryptocurrency code from the request body
         const crypto = req.body.crypto;
+        const currency = req.body.currency;
         // Sending a GET request to Coinbase API to fetch the price of the specified cryptocurrency
-        const result = await axios.get(API_URL + crypto + "-USD/buy");
+        const result = await axios.get(API_URL + crypto + "-" + currency + "/buy");
         // Extracting the price from the API response
         const price = result.data.data.amount;
         // Rendering the 'index.ejs' template with the price and cryptocurrency code
-        res.render("index.ejs", { content: price, crypto: crypto });
+        res.render("index.ejs", { content: price, crypto: crypto, currency: currency});
     } catch (error) {
         // Handling errors - rendering the 'index.ejs' template with an error message
-        res.render("index.ejs", { error: "Cryptocurrency code not found" });
+        res.render("index.ejs", { error: "Crypto code AND/OR currency not found" });
     } 
 });
 

@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs") %>
 
-<% if (locals.content && locals.crypto) { %>
-    <h1>The price of <%= crypto %> - USD is $<%= content %></h1>
+<% if (locals.content && locals.crypto && locals.currency ) { %>
+    <h1>The price of <%= crypto %> - <%= currency %> is <%= content %></h1>
 <% } else if (locals.error) { %>
     <h1><%= error %></h1>
 <% } else { %>
@@ -10,6 +10,7 @@
 
 <form action="/submit" method="POST">
     <input type="text" name="crypto" placeholder="Crypto code">
+    <input type="text" name="currency" placeholder="Currency">
     <input type="submit" value="Check Price">
 </form>
 
